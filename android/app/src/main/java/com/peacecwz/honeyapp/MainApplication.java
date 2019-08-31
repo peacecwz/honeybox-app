@@ -1,4 +1,4 @@
-package com.invertase.rnfirebasestarter;
+package com.peacecwz.honeyapp;
 
 import android.support.multidex.MultiDexApplication;
 
