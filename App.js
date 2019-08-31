@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Platform, Image, Text, View, ScrollView, AsyncStorage } from 'react-native';
 
 import firebase from 'react-native-firebase';
 
@@ -7,6 +7,33 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {};
+  }
+
+  async getToken() {
+    let fcmToken = await AsyncStorage.getItem('fcmToken');
+    if (!fcmToken) {
+      fcmToken = await firebase.messaging().getToken();
+      if (fcmToken) {
+        // user has a device token
+        await AsyncStorage.setItem('fcmToken', fcmToken);
+      }
+    }
+  }
+
+  async componentWillMount() {
+    try {
+      await firebase.messaging().requestPermission();
+      const enabled = await firebase.messaging().hasPermission();
+      if (!enabled) {
+        alert("Disabled");
+      } else {
+        this.getToken();
+      }
+    } catch (error) {
+      // User has rejected permissions
+    }
+
+
   }
 
   async componentDidMount() {
@@ -21,7 +48,7 @@ export default class App extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Image source={require('./assets/ReactNativeFirebase.png')} style={[styles.logo]}/>
+          <Image source={require('./assets/ReactNativeFirebase.png')} style={[styles.logo]} />
           <Text style={styles.welcome}>
             Welcome to {'\n'} React Native Firebase
           </Text>
@@ -34,11 +61,11 @@ export default class App extends React.Component {
               Cmd+D or shake for dev menu
             </Text>
           ) : (
-            <Text style={styles.instructions}>
-              Double tap R on your keyboard to reload,{'\n'}
-              Cmd+M or shake for dev menu
+              <Text style={styles.instructions}>
+                Double tap R on your keyboard to reload,{'\n'}
+                Cmd+M or shake for dev menu
             </Text>
-          )}
+            )}
           <View style={styles.modules}>
             <Text style={styles.modulesHeader}>The following Firebase modules are pre-installed:</Text>
             {firebase.admob.nativeModuleExists && <Text style={styles.module}>admob()</Text>}
