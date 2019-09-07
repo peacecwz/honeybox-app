@@ -1,6 +1,6 @@
 package com.peacecwz.honeyapp;
 
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import com.swmansion.rnscreens.RNScreensPackage;
