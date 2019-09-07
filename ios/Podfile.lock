@@ -178,6 +178,19 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.8.0)
+  - React (0.59.9):
+    - React/Core (= 0.59.9)
+  - React/Core (0.59.9):
+    - yoga (= 0.59.9.React)
+  - RNCAsyncStorage (1.6.1):
+    - React
+  - RNGestureHandler (1.4.1):
+    - React
+  - RNReanimated (1.2.0):
+    - React
+  - RNScreens (2.0.0-alpha.1):
+    - React
+  - yoga (0.59.9.React)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.13.2)
@@ -192,6 +205,12 @@ DEPENDENCIES:
   - Firebase/Performance (~> 6.3.0)
   - Firebase/RemoteConfig (~> 6.3.0)
   - Firebase/Storage (~> 6.3.0)
+  - React (from `../node_modules/react-native`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScreens (from `../node_modules/react-native-screens`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -224,6 +243,20 @@ SPEC REPOS:
     - nanopb
     - Protobuf
 
+EXTERNAL SOURCES:
+  React:
+    :path: "../node_modules/react-native"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
@@ -253,7 +286,13 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
+  React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
+  RNCAsyncStorage: 621bad7a889b5bf1583a52547f2dcd3a4d1ff15e
+  RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
+  RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
+  RNScreens: 35e771c226db35b0ef716d0eadaf5da3efa52365
+  yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: 36e421ed536242da9b63aa6ac599dbd481ea3315
+PODFILE CHECKSUM: e94545ea0706fd5e5c8aa2d0d1b696b3b4f0b248
 
 COCOAPODS: 1.7.5

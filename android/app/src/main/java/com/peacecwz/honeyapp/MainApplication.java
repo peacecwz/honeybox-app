@@ -3,6 +3,10 @@ package com.peacecwz.honeyapp;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import com.swmansion.rnscreens.RNScreensPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -40,6 +44,10 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new RNScreensPackage(),
+            new RNGestureHandlerPackage(),
+            new ReanimatedPackage(),
+            new AsyncStoragePackage(),
         new RNFirebasePackage(),
         // add/remove these packages as appropriate
         new RNFirebaseAdMobPackage(),

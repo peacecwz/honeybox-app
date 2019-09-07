@@ -23,6 +23,24 @@ target 'honeyapp' do
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.13.2'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+  pod "yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  pod 'React', :path => '../node_modules/react-native'
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if target.name == "React"
+        target.remove_from_project
+      end
+    end
+  end
+
 end
 
 target 'honeyapp-tvOS' do
