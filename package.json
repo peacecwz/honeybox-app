@@ -5,7 +5,7 @@
   "scripts": {
     "android-bundle": "ORG_GRADLE_PROJECT_bundleInDev=true npm run android",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator=\"iPhone X\"",
+    "ios": "react-native run-ios --simulator=\"iPhone 11 Pro Max\"",
     "apk": "cd android && ./gradlew assembleRelease",
     "rename": "node ./bin/rename.js",
     "start": "react-native start",
@@ -16,11 +16,13 @@
     "@react-native-community/async-storage": "^1.6.1",
     "react": "16.8.3",
     "react-native": "0.59.9",
+    "react-native-calendars": "^1.212.0",
     "react-native-firebase": "^5.5.4",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",
     "react-native-screens": "^2.0.0-alpha.1",
-    "react-navigation": "^4.0.0"
+    "react-navigation": "^4.0.0",
+    "react-navigation-stack": "^1.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
