@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "335438287916",
+    "firebase_url": "https://honeyapp-bca3e.firebaseio.com",
+    "project_id": "honeyapp-bca3e",
+    "storage_bucket": "honeyapp-bca3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335438287916:android:065d31ea0019a15d782d89",
+        "android_client_info": {
+          "package_name": "com.peacecwz.honeyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335438287916-rpb7ud3aqkvkkn3uqjnj3opmifjocea3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhn-XlYzf_xWqV7HAMI0axrtn97J3gX3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335438287916-rpb7ud3aqkvkkn3uqjnj3opmifjocea3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "335438287916-umn51r80orl981bvb9qbgsudd04c2igh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.peacecwz.honeyapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
