@@ -1,6 +1,6 @@
 import * as React from 'react';
 import BaseContainer from '../base-container';
-import {LoginRoutePath} from '../../route.path';
+import {AccountRoutePath, LoginRoutePath} from '../../route.path';
 import HomeScreen from '../../screens/home/home-screen';
 import HomeContext from '../../contexts/home/context';
 import HomeState from '../../contexts/home/state';
@@ -24,7 +24,7 @@ export default class HomeContainer extends BaseContainer<Props, HomeState> {
       await auth().signOut();
     }
     await AsyncStorage.removeItem('isLoggedUser');
-    this.push(LoginRoutePath);
+    this.push(AccountRoutePath);
   }
 
   render() {

@@ -5,7 +5,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {ThemeProvider} from 'styled-components';
 import theme from './themes';
 import {enableScreens} from 'react-native-screens';
-import {View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -30,12 +30,10 @@ export default class App extends React.Component<Props, State> {
   async componentDidMount() {
     const isLoggedUser = await AsyncStorage.getItem('isLoggedUser');
     const isLogged = (isLoggedUser && isLoggedUser === 'true') || false;
-    setTimeout(() => {
-      this.setState({
-        isLoading: false,
-        isLogged: isLogged,
-      });
-    }, 0);
+    this.setState({
+      isLoading: false,
+      isLogged: isLogged,
+    });
   }
 
   render() {

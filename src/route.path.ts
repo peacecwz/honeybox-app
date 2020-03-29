@@ -1,3 +1,4 @@
+export const AccountRoutePath = 'account';
 export const LoginRoutePath = 'account.login';
 export const RegisterRoutePath = 'account.register';
 export const MainRoutePath = 'main';

@@ -3,14 +3,15 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import LoginScreen from './screens/account/login-screen';
-import HomeScreen from './screens/home/home-screen';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import LoginScreen from './screens/account/login.screen';
 import CalendarScreen from './screens/calendar/calender-screen';
 import EventsScreen from './screens/events/events-screen';
 import ProfileScreen from './screens/profile/profile-screen';
 import {NavigationState} from '@react-navigation/routers';
 import analytics from '@react-native-firebase/analytics';
 import {
+  AccountRoutePath,
   CalendarRoutePath,
   EventsRoutePath,
   HomeRoutePath,
@@ -19,12 +20,15 @@ import {
   ProfileRoutePath,
   RegisterRoutePath,
 } from './route.path';
-import LoginContainer from './containers/account/login-container';
+import LoginContainer from './containers/account/login.container';
 import t from './utils/i18n';
 import HomeContainer from './containers/home/home.container';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import RegisterContainer from './containers/account/register.container';
 
 const HomeStack = createStackNavigator();
 const HomeTab = createBottomTabNavigator();
+const AccountTab = createMaterialTopTabNavigator();
 
 export interface Props {
   isLogged: boolean;
@@ -36,36 +40,27 @@ export default class Route extends React.Component<Props> {
   }
 
   getRouteName() {
-    return this.props.isLogged ? MainRoutePath : LoginRoutePath;
+    return this.props.isLogged ? MainRoutePath : AccountRoutePath;
   }
 
-  render() {
+  getAccountTabRoute() {
     return (
-      <NavigationContainer onStateChange={this.onStateChange}>
-        <HomeStack.Navigator initialRouteName={this.getRouteName()}>
-          <HomeStack.Screen
-            name={MainRoutePath}
-            options={{
-              title: t('HoneyApp'),
-            }}
-            component={this.getTabRoute}
-          />
-          <HomeStack.Screen
-            name={LoginRoutePath}
-            options={{
-              title: t('Login'),
-            }}
-            component={LoginContainer}
-          />
-          <HomeStack.Screen
-            name={RegisterRoutePath}
-            options={{
-              title: t('Register'),
-            }}
-            component={LoginScreen}
-          />
-        </HomeStack.Navigator>
-      </NavigationContainer>
+      <AccountTab.Navigator>
+        <AccountTab.Screen
+          name={LoginRoutePath}
+          options={{
+            title: t('Login'),
+          }}
+          component={LoginContainer}
+        />
+        <AccountTab.Screen
+          name={RegisterRoutePath}
+          options={{
+            title: t('Register'),
+          }}
+          component={RegisterContainer}
+        />
+      </AccountTab.Navigator>
     );
   }
 
@@ -101,6 +96,36 @@ export default class Route extends React.Component<Props> {
           component={ProfileScreen}
         />
       </HomeTab.Navigator>
+    );
+  }
+
+  render() {
+    return (
+      <NavigationContainer onStateChange={this.onStateChange}>
+        <HomeStack.Navigator initialRouteName={this.getRouteName()}>
+          <HomeStack.Screen
+            name={MainRoutePath}
+            options={{
+              title: t('HoneyApp'),
+            }}
+            component={this.getTabRoute}
+          />
+          <HomeStack.Screen
+            name={AccountRoutePath}
+            options={{
+              title: t('Login'),
+            }}
+            component={this.getAccountTabRoute}
+          />
+          <HomeStack.Screen
+            name={RegisterRoutePath}
+            options={{
+              title: t('Register'),
+            }}
+            component={LoginScreen}
+          />
+        </HomeStack.Navigator>
+      </NavigationContainer>
     );
   }
 
