@@ -3,13 +3,16 @@ const notImplemented = () => {
 };
 
 export default class RegisterState {
-  username?: string;
-  email?: string;
-  password?: string;
+  passwordVisible: boolean = false;
+  fullName?: string;
+  email: string = '';
+  password: string = '';
   birthDate?: string;
   actions: {
     register: Function;
+    goBack: Function;
   } = {
     register: notImplemented,
+    goBack: notImplemented,
   };
 }

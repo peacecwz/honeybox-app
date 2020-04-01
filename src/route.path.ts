@@ -1,6 +1,7 @@
 export const AccountRoutePath = 'account';
 export const LoginRoutePath = 'account.login';
 export const RegisterRoutePath = 'account.register';
+export const ForgotPasswordRoutePath = 'account.forgot-password';
 export const MainRoutePath = 'main';
 export const HomeRoutePath = 'main.home';
 export const CalendarRoutePath = 'main.calendar';

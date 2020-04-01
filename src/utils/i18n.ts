@@ -21,5 +21,11 @@ const setI18nConfig = () => {
 };
 
 setI18nConfig();
-const t = (key: string) => i18n.t(key);
+const t = (key: string) => {
+  const result = i18n.t(key);
+  if (result.indexOf('[missing ') > -1) {
+    return key;
+  }
+  return result;
+};
 export default t;

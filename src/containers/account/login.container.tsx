@@ -1,8 +1,11 @@
 import * as React from 'react';
 import LoginScreen from '../../screens/account/login.screen';
-import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
-import {MainRoutePath, RegisterRoutePath} from '../../route.path';
+import {
+  ForgotPasswordRoutePath,
+  MainRoutePath,
+  RegisterRoutePath,
+} from '../../route.path';
 import LoginContext from '../../contexts/account/login/context';
 import LoginState from '../../contexts/account/login/state';
 import {firebase} from '@react-native-firebase/auth';
@@ -22,18 +25,24 @@ export interface Props {
 export default class LoginContainer extends BaseContainer<Props, LoginState> {
   constructor(props: any) {
     super(props);
+    this.forgotPassword = this.forgotPassword.bind(this);
     this.register = this.register.bind(this);
     this.signInWithApple = this.signInWithApple.bind(this);
     this.signInWithAnonymously = this.signInWithAnonymously.bind(this);
     this.signInWithGoogle = this.signInWithGoogle.bind(this);
+    this.signInWithEmail = this.signInWithEmail.bind(this);
     this.state = {
+      passwordVisible: false,
       isEnabledAppleSignIn: Platform.OS === 'ios',
+      email: '',
+      password: '',
       actions: {
         register: this.register,
         forgotPassword: this.forgotPassword,
         signInWithApple: this.signInWithApple,
         signInWithAnonymously: this.signInWithAnonymously,
         signInWithGoogle: this.signInWithGoogle,
+        signInWithEmail: this.signInWithEmail,
       },
     };
   }
@@ -58,7 +67,7 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
 
       await firebase.auth().signInWithCredential(credential);
 
-      if (auth().currentUser) {
+      if (firebase.auth().currentUser) {
         await this.redirectToMain();
       }
     } catch (e) {
@@ -68,12 +77,31 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
     }
   }
 
+  async signInWithEmail() {
+    try {
+      const {email, password} = this.state;
+
+      if (email === '' || password === '') {
+        this.alert(t('Kullanıcı adı veya parolanız boş bırakılmamalı.'));
+        return;
+      }
+
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      if (firebase.auth().currentUser) {
+        await this.redirectToMain();
+      } else {
+        this.alert(t('Kullanıcı adı veya parolanız hatalıdır.'));
+      }
+    } catch (e) {
+      this.alert('Cannot sign in to app');
+    }
+  }
+
   async signInWithAnonymously() {
     try {
-      const result = await auth().signInAnonymously();
-      if (result && auth().currentUser) {
-        await AsyncStorage.setItem('isLoggedUser', 'true');
-        this.navigate(MainRoutePath);
+      const result = await firebase.auth().signInAnonymously();
+      if (result && firebase.auth().currentUser) {
+        await this.redirectToMain();
       }
     } catch (e) {
       this.alert('Cannot sign in to app');
@@ -101,7 +129,7 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
         .auth()
         .signInWithCredential(appleCredential);
 
-      if (userCredential && auth().currentUser) {
+      if (userCredential && firebase.auth().currentUser) {
         await this.redirectToMain();
       }
     } else {
@@ -114,12 +142,12 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
   }
 
   forgotPassword() {
-    this.navigate(RegisterRoutePath);
+    this.navigate(ForgotPasswordRoutePath);
   }
 
   async redirectToMain() {
     await AsyncStorage.setItem('isLoggedUser', 'true');
-    this.navigate(MainRoutePath);
+    this.navigateWithoutHistory(MainRoutePath);
   }
 
   render() {

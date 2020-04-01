@@ -1,8 +1,5 @@
-import * as React from 'react';
-import {TextInput} from 'react-native';
+import styled from 'styled-components';
 
-export default class Input extends React.Component {
-  render() {
-    return <TextInput />;
-  }
-}
+const Input = styled.Input``;
+
+export default Input;

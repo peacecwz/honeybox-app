@@ -3,7 +3,6 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import LoginScreen from './screens/account/login.screen';
 import CalendarScreen from './screens/calendar/calender-screen';
 import EventsScreen from './screens/events/events-screen';
@@ -14,6 +13,7 @@ import {
   AccountRoutePath,
   CalendarRoutePath,
   EventsRoutePath,
+  ForgotPasswordRoutePath,
   HomeRoutePath,
   LoginRoutePath,
   MainRoutePath,
@@ -23,12 +23,12 @@ import {
 import LoginContainer from './containers/account/login.container';
 import t from './utils/i18n';
 import HomeContainer from './containers/home/home.container';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 import RegisterContainer from './containers/account/register.container';
+import ForgotPasswordContainer from './containers/account/forgot-password.container';
 
 const HomeStack = createStackNavigator();
 const HomeTab = createBottomTabNavigator();
-const AccountTab = createMaterialTopTabNavigator();
+const AccountTab = createStackNavigator();
 
 export interface Props {
   isLogged: boolean;
@@ -45,7 +45,7 @@ export default class Route extends React.Component<Props> {
 
   getAccountTabRoute() {
     return (
-      <AccountTab.Navigator>
+      <AccountTab.Navigator headerMode={'none'}>
         <AccountTab.Screen
           name={LoginRoutePath}
           options={{
@@ -59,6 +59,13 @@ export default class Route extends React.Component<Props> {
             title: t('Register'),
           }}
           component={RegisterContainer}
+        />
+        <AccountTab.Screen
+          name={ForgotPasswordRoutePath}
+          options={{
+            title: t('Forgot Password'),
+          }}
+          component={ForgotPasswordContainer}
         />
       </AccountTab.Navigator>
     );
@@ -102,7 +109,9 @@ export default class Route extends React.Component<Props> {
   render() {
     return (
       <NavigationContainer onStateChange={this.onStateChange}>
-        <HomeStack.Navigator initialRouteName={this.getRouteName()}>
+        <HomeStack.Navigator
+          headerMode={'none'}
+          initialRouteName={this.getRouteName()}>
           <HomeStack.Screen
             name={MainRoutePath}
             options={{

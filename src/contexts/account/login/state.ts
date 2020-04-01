@@ -3,20 +3,23 @@ const notImplemented = () => {
 };
 
 export default class LoginState {
-  username?: string;
-  password?: string;
+  email: string = '';
+  password: string = '';
   isEnabledAppleSignIn: boolean = false;
+  passwordVisible: boolean = true;
   actions: {
     register: Function;
     forgotPassword: Function;
     signInWithApple: Function;
     signInWithAnonymously: Function;
     signInWithGoogle: Function;
+    signInWithEmail: Function;
   } = {
     register: notImplemented,
     forgotPassword: notImplemented,
     signInWithApple: notImplemented,
     signInWithAnonymously: notImplemented,
     signInWithGoogle: notImplemented,
+    signInWithEmail: notImplemented,
   };
 }
