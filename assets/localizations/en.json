@@ -5,8 +5,9 @@
   "Calendar": "Calendar",
   "Login": "Login",
   "Register": "Register",
-  "Events": "Events",
+  "Challenges": "Challenges",
   "Profile": "Profile",
   "Ok": "Ok",
-  "Cancel":"Cancel"
+  "Cancel":"Cancel",
+  "Log out": "Log Out"
 }

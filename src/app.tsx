@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import Route from './route';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Route from './routes';
 import {enableScreens} from 'react-native-screens';
 import {View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -59,9 +58,7 @@ export default class App extends React.Component<Props, AppState> {
               mapping={mapping}
               theme={getTheme(state.theme)}>
               <IconRegistry icons={EvaIconsPack} />
-              <SafeAreaProvider>
-                <Route isLogged={state.isLogged} />
-              </SafeAreaProvider>
+              <Route isLogged={state.isLogged} />
             </ApplicationProvider>
           )}
         </AppContext.Consumer>

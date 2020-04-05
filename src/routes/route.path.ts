@@ -5,5 +5,6 @@ export const ForgotPasswordRoutePath = 'account.forgot-password';
 export const MainRoutePath = 'main';
 export const HomeRoutePath = 'main.home';
 export const CalendarRoutePath = 'main.calendar';
-export const EventsRoutePath = 'main.events';
+export const ChallengesRoutePath = 'main.challenges';
 export const ProfileRoutePath = 'main.profile';
+export const ChallengeDetailRoutePath = 'main.challenges.detail';

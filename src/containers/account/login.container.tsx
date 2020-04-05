@@ -5,7 +5,7 @@ import {
   ForgotPasswordRoutePath,
   MainRoutePath,
   RegisterRoutePath,
-} from '../../route.path';
+} from '../../routes/route.path';
 import LoginContext from '../../contexts/account/login/context';
 import LoginState from '../../contexts/account/login/state';
 import {firebase} from '@react-native-firebase/auth';

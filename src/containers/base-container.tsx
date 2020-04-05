@@ -31,7 +31,7 @@ export default class BaseContainer<TProp, TState> extends React.Component<
   }
 
   navigate(key: string, args?: any) {
-    this.navigationManager.navigate(key);
+    this.navigationManager.navigate(key, args || {});
   }
 
   push(key: string) {

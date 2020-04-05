@@ -5,8 +5,9 @@
   "Calendar": "Takvim",
   "Login": "Giriş Yap",
   "Register": "Kayıt Ol",
-  "Events": "Etkinlikler",
+  "Challenges": "Görevler",
   "Profile": "Profilim",
   "Ok": "Tamam",
-  "Cancel":"İptal et"
+  "Cancel":"İptal et",
+  "Log out": "Çıkış Yap"
 }
