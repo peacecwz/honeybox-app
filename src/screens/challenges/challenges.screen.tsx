@@ -4,6 +4,7 @@ import {Card, List, Text} from '@ui-kitten/components';
 import {ImageOverlay} from '../../components/image-overlay';
 import {Challenge} from '../../contexts/challenges/list/state';
 import ChallengesContext from '../../contexts/challenges/list/context';
+import {getImage} from '../../utils/image-utils';
 
 export default class ChallengesScreen extends React.Component {
   renderItem(
@@ -12,7 +13,9 @@ export default class ChallengesScreen extends React.Component {
   ): React.ReactElement {
     return (
       <Card style={styles.item} onPress={() => onPress(info.item.id)}>
-        <ImageOverlay style={styles.itemImage} source={info.item.image}>
+        <ImageOverlay
+          style={styles.itemImage}
+          source={getImage(info.item.image)}>
           <Text style={styles.itemTitle} category="h2" status="control">
             {info.item.title}
           </Text>

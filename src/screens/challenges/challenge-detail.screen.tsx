@@ -1,8 +1,10 @@
 import * as React from 'react';
 import ChallengeDetailContext from '../../contexts/challenges/detail/context';
-import {ImageBackground, ScrollView, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {Button, Layout, StyleService, Text} from '@ui-kitten/components';
 import t from '../../utils/i18n';
+import {getImage} from '../../utils/image-utils';
+import FastImage from 'react-native-fast-image';
 
 export default class ChallengeDetailScreen extends React.Component {
   render() {
@@ -17,9 +19,9 @@ export default class ChallengeDetailScreen extends React.Component {
               <Text style={styles.descriptionLabel} category="s1">
                 {state.challenge.description}
               </Text>
-              <ImageBackground
+              <FastImage
                 style={styles.image}
-                source={state.challenge.image}
+                source={getImage(state.challenge.image)}
               />
               <Text style={styles.contentLabel}>{state.challenge.content}</Text>
               <View style={styles.authoringContainer}>
@@ -31,6 +33,7 @@ export default class ChallengeDetailScreen extends React.Component {
                 </Text>
               </View>
               <Button
+                disabled={!state.canSubmitToChallenge}
                 style={styles.doneButton}
                 onPress={() => state.actions.sendPhoto(state.challenge)}>
                 {t('Start the challenge')}

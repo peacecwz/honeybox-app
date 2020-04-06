@@ -4,13 +4,14 @@ import ChallengeDetailContext from '../../contexts/challenges/detail/context';
 import ChallengeDetailScreen from '../../screens/challenges/challenge-detail.screen';
 import BaseContainer from '../base-container';
 import database from '@react-native-firebase/database';
-import {Challenge} from '../../contexts/challenges/list/state';
+import {Challenge, Submission} from '../../contexts/challenges/list/state';
 import storage from '@react-native-firebase/storage';
 import {firebase} from '@react-native-firebase/auth';
 import ImagePicker from 'react-native-image-picker';
 import t from '../../utils/i18n';
 import {getFilename} from '../../utils/url-utils';
 import {v4 as uuidv4} from 'uuid';
+import {Alert} from 'react-native';
 
 export interface Props {}
 
@@ -43,8 +44,8 @@ export default class ChallengeDetailContainer extends BaseContainer<
         const reference = storage().ref(
           `${challenge.id}-${uuidv4()}-${getFilename(response.uri)}`,
         );
-        const userId = firebase.auth().currentUser.uid;
         const result = await reference.putFile(response.uri);
+        const userId = this.getUserId();
 
         if (!result) {
           this.alert(t('Your media cannot upload'));
@@ -52,22 +53,27 @@ export default class ChallengeDetailContainer extends BaseContainer<
         }
 
         const challengeReference = database().ref(
-          `/user-challenges/${userId}/challenges/${challenge.id}`,
+          `/challenges/${challenge.id}/submissions/${userId}`,
         );
 
-        const challengeData = {
+        const challengeData = new Submission(null, {
           status: 'pending',
           isComplete: false,
           mediaUrl: await reference.getDownloadURL(),
-        };
-
-        console.log(`Result: ${JSON.stringify(challengeData)}`);
+        });
 
         await challengeReference.set(challengeData);
-        this.alert(
+        Alert.alert(
+          t('HoneyApp'),
           t(
             'We got your challenge request. We will send info about your challenge',
           ),
+          [
+            {
+              onPress: () => this.goBack,
+              text: t('Ok'),
+            },
+          ],
         );
       }
     });
@@ -80,8 +86,15 @@ export default class ChallengeDetailContainer extends BaseContainer<
       .once('value');
 
     const result = request.val();
+    const challenge = new Challenge(challengeId, result);
+    const userId = this.getUserId();
+    const canSubmitToChallenge =
+      challenge.submissions.filter(
+        (submission: Submission) => submission.id === userId,
+      ).length === 0;
     this.setState({
-      challenge: new Challenge(challengeId, result),
+      challenge: challenge,
+      canSubmitToChallenge: canSubmitToChallenge,
     });
   }
 

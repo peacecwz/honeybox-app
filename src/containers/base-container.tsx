@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Alert} from 'react-native';
 import t from '../utils/i18n';
 import {} from '@react-navigation/stack';
+import {firebase} from '@react-native-firebase/auth';
 
 export default class BaseContainer<TProp, TState> extends React.Component<
   TProp,
@@ -17,6 +18,10 @@ export default class BaseContainer<TProp, TState> extends React.Component<
 
   getParameter(key: string) {
     return this.route.params[key];
+  }
+
+  getUserId(): string {
+    return (firebase.auth().currentUser || {}).uid || '';
   }
 
   navigateWithoutHistory(key: string) {
