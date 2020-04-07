@@ -1,8 +1,8 @@
-import {FastImageProps, Source} from 'react-native-fast-image';
+import {Source} from 'react-native-fast-image';
 
 export function getImage(source: Source | string): Source {
   if (typeof source === 'string') {
-    return <Source>{
+    return <any>{
       uri: source,
       cache: 'immutable',
     };
