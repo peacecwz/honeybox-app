@@ -10,34 +10,37 @@ import RegisterContainer from '../containers/account/register.container';
 import ForgotPasswordContainer from '../containers/account/forgot-password.container';
 import {createStackNavigator} from '@react-navigation/stack';
 
-const AccountTab = createStackNavigator();
+const AccountStack = createStackNavigator();
 
 export default class AccountRoute extends React.Component {
   render() {
     return (
-      <AccountTab.Navigator headerMode={'none'}>
-        <AccountTab.Screen
+      <AccountStack.Navigator mode={'modal'} headerMode={'none'}>
+        <AccountStack.Screen
           name={LoginRoutePath}
           options={{
             title: t('Login'),
+            headerShown: false,
           }}
           component={LoginContainer}
         />
-        <AccountTab.Screen
+        <AccountStack.Screen
           name={RegisterRoutePath}
           options={{
             title: t('Register'),
+            headerShown: false,
           }}
           component={RegisterContainer}
         />
-        <AccountTab.Screen
+        <AccountStack.Screen
           name={ForgotPasswordRoutePath}
           options={{
             title: t('Forgot Password'),
+            headerShown: false,
           }}
           component={ForgotPasswordContainer}
         />
-      </AccountTab.Navigator>
+      </AccountStack.Navigator>
     );
   }
 }

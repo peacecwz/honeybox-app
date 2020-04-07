@@ -5,7 +5,6 @@ import LoginContext from '../../contexts/account/login/context';
 import t from '../../utils/i18n';
 import {ImageOverlay} from '../../components/image-overlay';
 import {
-  AppleIcon,
   EyeIcon,
   EyeOffIcon,
   GoogleIcon,
@@ -13,6 +12,11 @@ import {
 } from '../../components/icons';
 import {SignInBackground} from '../../components/background-images';
 import {KeyboardAvoidingView} from '../../components/keyboard-avoding-view';
+import {AppleButton} from '@invertase/react-native-apple-authentication';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-community/google-signin';
 
 export default class LoginScreen extends React.Component {
   constructor(props: any) {
@@ -72,29 +76,28 @@ export default class LoginScreen extends React.Component {
               </Button>
               <View style={styles.socialAuthContainer}>
                 <Text style={styles.socialAuthHintText} status="control">
-                  {t('Or Sign In using Social Media')}
+                  {t('Or Connect With')}
                 </Text>
                 <View style={styles.socialAuthButtonsContainer}>
-                  <Button
-                    appearance="ghost"
-                    status="control"
-                    size="giant"
-                    icon={GoogleIcon}
+                  <GoogleSigninButton
+                    style={{width: 192, height: 48}}
+                    size={GoogleSigninButton.Size.Wide}
+                    color={GoogleSigninButton.Color.Dark}
                     onPress={() => state.actions.signInWithGoogle()}
                   />
                   {state.isEnabledAppleSignIn ? (
-                    <Button
-                      appearance="ghost"
-                      status="control"
-                      size="giant"
-                      icon={AppleIcon}
+                    <AppleButton
                       onPress={() => state.actions.signInWithApple()}
+                      buttonStyle={AppleButton.Style.BLACK}
+                      buttonType={AppleButton.Type.SIGN_IN}
+                      style={{width: 192, height: 48}}
                     />
                   ) : (
                     <View />
                   )}
                 </View>
               </View>
+
               <Button
                 style={styles.signUpButton}
                 appearance="ghost"
@@ -146,7 +149,8 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   socialAuthButtonsContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   socialAuthHintText: {

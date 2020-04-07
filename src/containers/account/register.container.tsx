@@ -20,6 +20,7 @@ export default class RegisterContainer extends BaseContainer<
   constructor(props: any) {
     super(props);
     this.register = this.register.bind(this);
+    this.goBack = this.goBack.bind(this);
     this.state = {
       passwordVisible: false,
       birthDate: '',
@@ -51,10 +52,9 @@ export default class RegisterContainer extends BaseContainer<
       });
 
       if (result && result.user) {
-        this.navigate(LoginRoutePath);
+        this.goBack();
       }
     } catch (e) {
-      console.log(JSON.stringify(e));
       this.alert(t('Cannot register to app'));
     }
   }

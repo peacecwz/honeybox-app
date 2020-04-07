@@ -106,11 +106,6 @@ export default class Index extends React.Component<Props, State> {
       <SafeAreaView style={{flex: 1}}>
         <NavigationContainer onStateChange={this.onStateChange}>
           <MainStack.Navigator
-            headerMode={'none'}
-            screenOptions={{
-              header: ({scene, previous, navigation}) =>
-                this.renderHeader(scene, previous, navigation),
-            }}
             initialRouteName={this.getRouteName()}>
             <MainStack.Screen
               name={MainRoutePath}
