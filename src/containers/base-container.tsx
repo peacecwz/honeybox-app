@@ -2,7 +2,8 @@ import * as React from 'react';
 import {Alert} from 'react-native';
 import t from '../utils/i18n';
 import {} from '@react-navigation/stack';
-import {firebase} from '@react-native-firebase/auth';
+// @ts-ignore
+import {firebase, User} from '@react-native-firebase/auth';
 
 export default class BaseContainer<TProp, TState> extends React.Component<
   TProp,
@@ -14,6 +15,10 @@ export default class BaseContainer<TProp, TState> extends React.Component<
     super(props);
     this.navigationManager = props.navigation;
     this.route = props.route;
+  }
+
+  getUser(): User | null {
+    return firebase.auth().currentUser;
   }
 
   getParameter(key: string) {

@@ -53,6 +53,8 @@ export default class RegisterContainer extends BaseContainer<
 
       if (result && result.user) {
         this.goBack();
+      } else {
+        this.alert(t('Cannot register to app'));
       }
     } catch (e) {
       this.alert(t('Cannot register to app'));

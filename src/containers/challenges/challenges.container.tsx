@@ -4,7 +4,7 @@ import ChallengesContext from '../../contexts/challenges/list/context';
 import ChallengesScreen from '../../screens/challenges/challenges.screen';
 import database from '@react-native-firebase/database';
 import BaseContainer from '../base-container';
-import {ChallengeDetailRoutePath} from '../../routes/route.path';
+import {AppRoutePath, ChallengeDetailRoutePath} from '../../routes/route.path';
 
 export interface Props {}
 
@@ -22,8 +22,11 @@ export default class ChallengesContainer extends BaseContainer<
   }
 
   goToChallengeDetail(challengeId: any) {
-    this.navigate(ChallengeDetailRoutePath, {
-      challengeId: challengeId,
+    this.navigate(AppRoutePath, {
+      params: {
+        challengeId: challengeId,
+      },
+      screen: ChallengeDetailRoutePath,
     });
   }
 

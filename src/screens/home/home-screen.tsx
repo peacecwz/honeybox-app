@@ -10,7 +10,6 @@ export default class HomeScreen extends React.Component {
           <View
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <Text>Home Screen</Text>
-            <Button title={'Log out'} onPress={() => state.actions.logOut()} />
           </View>
         )}
       </HomeContext.Consumer>

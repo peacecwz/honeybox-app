@@ -17,6 +17,7 @@ import BaseContainer from '../base-container';
 import {Platform} from 'react-native';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import t from '../../utils/i18n';
+import database from '@react-native-firebase/database';
 
 export interface Props {
   navigation: any;
@@ -67,7 +68,20 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
 
       await firebase.auth().signInWithCredential(credential);
 
-      if (firebase.auth().currentUser) {
+      const currentUser = this.getUser();
+      if (currentUser) {
+        const ref = database().ref(`/users/${currentUser.uid}`);
+
+        const userData = await ref.once('value');
+        if (!userData.exists()) {
+          await ref.set({
+            email: currentUser.email,
+            userId: currentUser.uid,
+            fullName: currentUser.displayName,
+            birthDate: '',
+          });
+        }
+
         await this.redirectToMain();
       }
     } catch (e) {
@@ -82,25 +96,37 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
       const {email, password} = this.state;
 
       if (email === '' || password === '') {
-        this.alert(t('Kullanıcı adı veya parolanız boş bırakılmamalı.'));
+        this.alert(t('Your email or password is missing'));
         return;
       }
 
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      if (firebase.auth().currentUser) {
+      if (this.getUser()) {
         await this.redirectToMain();
       } else {
-        this.alert(t('Kullanıcı adı veya parolanız hatalıdır.'));
+        this.alert(t('Wrong your email address or password'));
       }
     } catch (e) {
-      this.alert('Cannot sign in to app');
+      this.alert(t('Wrong your email address or password'));
     }
   }
 
   async signInWithAnonymously() {
     try {
       const result = await firebase.auth().signInAnonymously();
-      if (result && firebase.auth().currentUser) {
+      const currentUser = this.getUser();
+      if (result && currentUser) {
+        const ref = database().ref(`/users/${currentUser.uid}`);
+
+        const userData = await ref.once('value');
+        if (!userData.exists()) {
+          await ref.set({
+            email: currentUser.email,
+            userId: currentUser.uid,
+            fullName: currentUser.displayName,
+            birthDate: '',
+          });
+        }
         await this.redirectToMain();
       }
     } catch (e) {
@@ -129,7 +155,19 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
         .auth()
         .signInWithCredential(appleCredential);
 
-      if (userCredential && firebase.auth().currentUser) {
+      const currentUser = this.getUser();
+      if (userCredential && currentUser) {
+        const ref = database().ref(`/users/${currentUser.uid}`);
+
+        const userData = await ref.once('value');
+        if (!userData.exists()) {
+          await ref.set({
+            email: currentUser.email,
+            userId: currentUser.uid,
+            fullName: currentUser.displayName,
+            birthDate: '',
+          });
+        }
         await this.redirectToMain();
       }
     } else {

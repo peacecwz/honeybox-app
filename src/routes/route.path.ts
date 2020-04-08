@@ -1,10 +1,11 @@
+export const AppRoutePath = 'app';
 export const AccountRoutePath = 'account';
 export const LoginRoutePath = 'account.login';
 export const RegisterRoutePath = 'account.register';
 export const ForgotPasswordRoutePath = 'account.forgot-password';
-export const MainRoutePath = 'main';
-export const HomeRoutePath = 'main.home';
-export const CalendarRoutePath = 'main.calendar';
-export const ChallengesRoutePath = 'main.challenges';
-export const ProfileRoutePath = 'main.profile';
-export const ChallengeDetailRoutePath = 'main.challenges.detail';
+export const MainRoutePath = 'app.main';
+export const HomeRoutePath = 'app.main.home';
+export const CalendarRoutePath = 'app.main.calendar';
+export const ChallengesRoutePath = 'app.main.challenges';
+export const ProfileRoutePath = 'app.main.profile';
+export const ChallengeDetailRoutePath = 'app.main.challenges.detail';
