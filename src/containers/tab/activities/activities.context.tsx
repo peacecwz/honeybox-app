@@ -1,19 +1,18 @@
 import * as React from 'react';
-import BaseContainer from '../base-container';
-import CalendarState, {Activity} from '../../contexts/calendar/state';
-import CalendarContext from '../../contexts/calendar/context';
-import CalendarScreen from '../../screens/calendar/calender.screen';
+import BaseContainer from '../../base-container';
+import ActivitiesState, {Activity} from '../../../contexts/activities/state';
+import ActivitiesContext from '../../../contexts/activities/context';
+import ActivitiesScreen from '../../../screens/tab/activities/activities.screen';
 import database from '@react-native-firebase/database';
-import {Challenge} from '../../contexts/challenges/list/state';
-import {addDayToDate, dateToString, getDates} from '../../utils/date-utils';
+import {addDayToDate, getDates} from '../../../utils/date-utils';
 export interface Props {}
-export default class CalendarContainer extends BaseContainer<
+export default class ActivitiesContainer extends BaseContainer<
   Props,
-  CalendarState
+  ActivitiesState
 > {
   constructor(props: any) {
     super(props);
-    const state = new CalendarState();
+    const state = new ActivitiesState();
     state.actions.loadItems = this.loadItems.bind(this);
     this.state = state;
   }
@@ -78,9 +77,9 @@ export default class CalendarContainer extends BaseContainer<
 
   render() {
     return (
-      <CalendarContext.Provider value={this.state}>
-        <CalendarScreen />
-      </CalendarContext.Provider>
+      <ActivitiesContext.Provider value={this.state}>
+        <ActivitiesScreen />
+      </ActivitiesContext.Provider>
     );
   }
 }

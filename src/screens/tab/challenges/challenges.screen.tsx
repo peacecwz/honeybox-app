@@ -1,10 +1,11 @@
 import React from 'react';
-import {ListRenderItemInfo, StyleSheet} from 'react-native';
-import {Card, List, Text} from '@ui-kitten/components';
-import {ImageOverlay} from '../../components/image-overlay';
-import {Challenge} from '../../contexts/challenges/list/state';
-import ChallengesContext from '../../contexts/challenges/list/context';
-import {getImage} from '../../utils/image-utils';
+import {ListRenderItemInfo, StyleSheet, View} from 'react-native';
+import {Card, Divider, List, Text, TopNavigation} from '@ui-kitten/components';
+import {ImageOverlay} from '../../../components/image-overlay';
+import {Challenge} from '../../../contexts/challenges/list/state';
+import ChallengesContext from '../../../contexts/challenges/list/context';
+import {getImage} from '../../../utils/image-utils';
+import t from '../../../utils/i18n';
 
 export default class ChallengesScreen extends React.Component {
   renderItem(
@@ -31,14 +32,23 @@ export default class ChallengesScreen extends React.Component {
     return (
       <ChallengesContext.Consumer>
         {state => (
-          <List
-            style={styles.list}
-            contentContainerStyle={styles.listContent}
-            data={state.challenges}
-            renderItem={(item: ListRenderItemInfo<Challenge>) =>
-              this.renderItem(item, state.actions.goToChallengeDetail)
-            }
-          />
+          <React.Fragment>
+            <TopNavigation
+              alignment={'center'}
+              leftControl={<View />}
+              title={t('Challenges')}
+              rightControls={<View />}
+            />
+            <Divider />
+            <List
+              style={styles.list}
+              contentContainerStyle={styles.listContent}
+              data={state.challenges}
+              renderItem={(item: ListRenderItemInfo<Challenge>) =>
+                this.renderItem(item, state.actions.goToChallengeDetail)
+              }
+            />
+          </React.Fragment>
         )}
       </ChallengesContext.Consumer>
     );

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import BaseContainer from '../base-container';
-import {AccountRoutePath} from '../../routes/route.path';
-import HomeScreen from '../../screens/home/home-screen';
-import HomeContext from '../../contexts/home/context';
-import HomeState from '../../contexts/home/state';
+import BaseContainer from '../../base-container';
+import {AccountRoutePath} from '../../../routes/route.path';
+import HomeScreen from '../../../screens/tab/home/home.screen';
+import HomeContext from '../../../contexts/home/context';
+import HomeState from '../../../contexts/home/state';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 export interface Props {}

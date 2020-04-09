@@ -29,7 +29,7 @@ export class Activity {
   }
 }
 
-export default class CalendarState {
+export default class ActivitiesState {
   items: any = {};
   actions: {
     loadItems: Function;

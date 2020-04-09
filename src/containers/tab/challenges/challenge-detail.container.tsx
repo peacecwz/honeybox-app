@@ -1,15 +1,15 @@
 import * as React from 'react';
-import ChallengeDetailState from '../../contexts/challenges/detail/state';
-import ChallengeDetailContext from '../../contexts/challenges/detail/context';
-import ChallengeDetailScreen from '../../screens/challenges/challenge-detail.screen';
-import BaseContainer from '../base-container';
+import ChallengeDetailState from '../../../contexts/challenges/detail/state';
+import ChallengeDetailContext from '../../../contexts/challenges/detail/context';
+import ChallengeDetailScreen from '../../../screens/tab/challenges/challenge-detail.screen';
+import BaseContainer from '../../base-container';
 import database from '@react-native-firebase/database';
-import {Challenge, Submission} from '../../contexts/challenges/list/state';
+import {Challenge, Submission} from '../../../contexts/challenges/list/state';
 import storage from '@react-native-firebase/storage';
 import {firebase} from '@react-native-firebase/auth';
 import ImagePicker from 'react-native-image-picker';
-import t from '../../utils/i18n';
-import {getFilename} from '../../utils/url-utils';
+import t from '../../../utils/i18n';
+import {getFilename} from '../../../utils/url-utils';
 import {v4 as uuidv4} from 'uuid';
 import {Alert} from 'react-native';
 

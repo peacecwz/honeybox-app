@@ -1,18 +1,17 @@
 import * as React from 'react';
 import {
-  CalendarRoutePath,
+  ActivitiesRoutePath,
   ChallengesRoutePath,
   HomeRoutePath,
   ProfileRoutePath,
 } from './route.path';
 import t from '../utils/i18n';
-import HomeContainer from '../containers/home/home.container';
-import ProfileContainer from '../containers/profile/profile.container';
+import HomeContainer from '../containers/tab/home/home.container';
+import ProfileContainer from '../containers/tab/profile/profile.container';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ChallengesContainer from '../containers/challenges/challenges.container';
-import CalendarContainer from '../containers/calendar/calendar.context';
+import ChallengesContainer from '../containers/tab/challenges/challenges.container';
+import ActivitiesContainer from '../containers/tab/activities/activities.context';
 import {SafeAreaView} from 'react-native';
-import {Fragment} from 'react';
 
 const HomeTab = createBottomTabNavigator();
 
@@ -30,11 +29,11 @@ export default class TabRoute extends React.Component {
             component={HomeContainer}
           />
           <HomeTab.Screen
-            name={CalendarRoutePath}
+            name={ActivitiesRoutePath}
             options={{
-              title: t('Calendar'),
+              title: t('Activities'),
             }}
-            component={CalendarContainer}
+            component={ActivitiesContainer}
           />
           <HomeTab.Screen
             name={ChallengesRoutePath}

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import BaseContainer from '../base-container';
-import {AccountRoutePath} from '../../routes/route.path';
+import BaseContainer from '../../base-container';
+import {AccountRoutePath} from '../../../routes/route.path';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
-import ProfileState from '../../contexts/profile/state';
-import ProfileContext from '../../contexts/profile/context';
-import ProfileScreen from '../../screens/profile/profile-screen';
+import ProfileState from '../../../contexts/profile/state';
+import ProfileContext from '../../../contexts/profile/context';
+import ProfileScreen from '../../../screens/tab/profile/profile.screen';
 import {Alert, Linking} from 'react-native';
-import t from '../../utils/i18n';
+import t from '../../../utils/i18n';
 
 export interface Props {}
 

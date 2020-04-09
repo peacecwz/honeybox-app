@@ -13,7 +13,7 @@ import AccountRoute from './account.route';
 import TabRoute from './tab.route';
 import {NavigationState} from '@react-navigation/routers';
 import analytics from '@react-native-firebase/analytics';
-import ChallengeDetailContainer from '../containers/challenges/challenge-detail.container';
+import ChallengeDetailContainer from '../containers/tab/challenges/challenge-detail.container';
 import AppRoute from './app.route';
 
 const MainStack = createStackNavigator();
