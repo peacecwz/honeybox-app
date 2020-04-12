@@ -8,7 +8,9 @@ export default class ChallengeDetailState {
   canSubmitToChallenge: boolean = true;
   actions: {
     sendPhoto: Function;
+    goBack: Function;
   } = {
     sendPhoto: notImplemented,
+    goBack: notImplemented,
   };
 }

@@ -20,9 +20,10 @@ import {
 import {SignUpBackground} from '../../components/background-images';
 
 export default class RegisterScreen extends React.Component {
-  constructor(props: any) {
-    super(props);
-  }
+  state = {
+    passwordVisible: false,
+    acceptPrivacy: false,
+  };
 
   render() {
     return (
@@ -58,17 +59,30 @@ export default class RegisterScreen extends React.Component {
                   style={styles.formInput}
                   status="control"
                   autoCapitalize="none"
-                  secureTextEntry={!state.passwordVisible}
+                  secureTextEntry={!this.state.passwordVisible}
                   placeholder="Password"
-                  icon={state.passwordVisible ? EyeIcon : EyeOffIcon}
+                  icon={!this.state.passwordVisible ? EyeIcon : EyeOffIcon}
                   onChangeText={text => (state.password = text)}
                   onIconPress={() =>
-                    (state.passwordVisible = !state.passwordVisible)
+                    this.setState({
+                      passwordVisible: !this.state.passwordVisible,
+                    })
                   }
                 />
                 <CheckBox
                   style={styles.termsCheckBox}
                   textStyle={styles.termsCheckBoxText}
+                  checked={this.state.acceptPrivacy}
+                  onChange={value =>
+                    this.setState(
+                      {
+                        acceptPrivacy: value,
+                      },
+                      () => {
+                        state.acceptPrivacy = this.state.acceptPrivacy;
+                      },
+                    )
+                  }
                   text={t('I read and agree to Terms & Conditions')}
                 />
               </View>

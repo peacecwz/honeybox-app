@@ -4,24 +4,16 @@ import {Button, Input, Text} from '@ui-kitten/components';
 import LoginContext from '../../contexts/account/login/context';
 import t from '../../utils/i18n';
 import {ImageOverlay} from '../../components/image-overlay';
-import {
-  EyeIcon,
-  EyeOffIcon,
-  GoogleIcon,
-  PersonIcon,
-} from '../../components/icons';
+import {EyeIcon, EyeOffIcon, PersonIcon} from '../../components/icons';
 import {SignInBackground} from '../../components/background-images';
 import {KeyboardAvoidingView} from '../../components/keyboard-avoding-view';
 import {AppleButton} from '@invertase/react-native-apple-authentication';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-} from '@react-native-community/google-signin';
+import {GoogleSigninButton} from '@react-native-community/google-signin';
 
 export default class LoginScreen extends React.Component {
-  constructor(props: any) {
-    super(props);
-  }
+  state = {
+    passwordVisible: false,
+  };
 
   render() {
     return (
@@ -48,15 +40,16 @@ export default class LoginScreen extends React.Component {
                   style={styles.passwordInput}
                   status="control"
                   placeholder={t('Password')}
-                  icon={state.passwordVisible ? EyeIcon : EyeOffIcon}
-                  secureTextEntry={!state.passwordVisible}
-                  onIconPress={() => {
-                    state.passwordVisible = !state.passwordVisible;
-                    console.log(
-                      `Password Visible Status: ${state.passwordVisible}`,
-                    );
+                  icon={!this.state.passwordVisible ? EyeIcon : EyeOffIcon}
+                  secureTextEntry={!this.state.passwordVisible}
+                  onIconPress={() =>
+                    this.setState({
+                      passwordVisible: !this.state.passwordVisible,
+                    })
+                  }
+                  onChangeText={text => {
+                    state.password = text;
                   }}
-                  onChangeText={text => (state.password = text)}
                 />
                 <View style={styles.forgotPasswordContainer}>
                   <Button

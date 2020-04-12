@@ -8,10 +8,12 @@ import {
   StyleService,
   Text,
   TopNavigation,
+  TopNavigationAction,
 } from '@ui-kitten/components';
 import t from '../../../utils/i18n';
 import {getImage} from '../../../utils/image-utils';
 import FastImage from 'react-native-fast-image';
+import {ArrowIosBackIcon} from '../../../components/icons';
 
 export default class ChallengeDetailScreen extends React.Component {
   render() {
@@ -19,7 +21,16 @@ export default class ChallengeDetailScreen extends React.Component {
       <ChallengeDetailContext.Consumer>
         {state => (
           <React.Fragment>
-            <TopNavigation alignment={'center'} title={state.challenge.title} />
+            <TopNavigation
+              alignment={'center'}
+              leftControl={
+                <TopNavigationAction
+                  icon={ArrowIosBackIcon}
+                  onPress={() => state.actions.goBack()}
+                />
+              }
+              title={state.challenge.title}
+            />
             <Divider />
             <ScrollView>
               <Layout style={styles.header} level="1">

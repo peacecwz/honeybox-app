@@ -183,6 +183,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-splash-screen')
+    api project(':react-native-image-picker')
     implementation 'com.android.support:multidex:1.0.3'
 
     if (enableHermes) {

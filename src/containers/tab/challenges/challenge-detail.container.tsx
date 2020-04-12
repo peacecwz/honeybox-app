@@ -23,6 +23,7 @@ export default class ChallengeDetailContainer extends BaseContainer<
     super(props);
     const challengeDetailState = new ChallengeDetailState();
     challengeDetailState.actions.sendPhoto = this.sendPhoto.bind(this);
+    challengeDetailState.actions.goBack = this.goBack.bind(this);
     this.state = challengeDetailState;
   }
 

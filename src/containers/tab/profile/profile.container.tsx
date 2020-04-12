@@ -17,18 +17,22 @@ export default class ProfileContainer extends BaseContainer<
 > {
   constructor(props: any) {
     super(props);
-    this.logOut = this.logOut.bind(this);
-    this.state = {
-      isNotificationsEnabled: true,
-      actions: {
-        logOut: this.logOut,
-        goToPrivacy: this.goToPrivacy,
-        goToContactUs: this.goToContactUs,
-        goToBlog: this.goToBlog,
-        goToAboutUs: this.goToAboutUs,
-        goToSocial: this.goToSocial,
-      },
-    };
+    const state = new ProfileState();
+    state.actions.goToSocial = this.goToSocial.bind(this);
+    state.actions.logOut = this.logOut.bind(this);
+    state.actions.goToPrivacy = this.goToPrivacy.bind(this);
+    state.actions.goToContactUs = this.goToContactUs.bind(this);
+    state.actions.goToBlog = this.goToBlog.bind(this);
+    state.actions.goToAboutUs = this.goToAboutUs.bind(this);
+    this.state = state;
+  }
+
+  async componentDidMount() {
+    const isNotificationEnabled =
+      (await AsyncStorage.getItem('isNotificationEnabled')) || true;
+    this.setState({
+      isNotificationsEnabled: isNotificationEnabled === 'true',
+    });
   }
 
   async goToSocial(type: string) {

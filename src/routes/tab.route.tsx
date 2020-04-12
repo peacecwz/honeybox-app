@@ -12,15 +12,42 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ChallengesContainer from '../containers/tab/challenges/challenges.container';
 import ActivitiesContainer from '../containers/tab/activities/activities.context';
 import {SafeAreaView} from 'react-native';
+import {BottomNavigation, BottomNavigationTab} from '@ui-kitten/components';
+import {
+  CalendarIcon,
+  GridIcon,
+  HomeIcon,
+  PersonIcon,
+  ProfileIcon,
+} from '../components/icons';
 
 const HomeTab = createBottomTabNavigator();
+
+class BottomBarNavigation extends React.Component {
+  render() {
+    const {navigation, state}: any = this.props;
+    return (
+      <React.Fragment>
+        <BottomNavigation
+          selectedIndex={state.index}
+          onSelect={index => navigation.navigate(state.routeNames[index])}>
+          <BottomNavigationTab title={t('Home')} icon={HomeIcon} />
+          <BottomNavigationTab title={t('Activities')} icon={CalendarIcon} />
+          <BottomNavigationTab title={t('Challenges')} icon={GridIcon} />
+          <BottomNavigationTab title={t('Profile')} icon={PersonIcon} />
+        </BottomNavigation>
+        <SafeAreaView style={{flex: 0, backgroundColor: 'white'}} />
+      </React.Fragment>
+    );
+  }
+}
 
 export default class TabRoute extends React.Component {
   render() {
     return (
       <React.Fragment>
         <SafeAreaView style={{flex: 0, backgroundColor: 'white'}} />
-        <HomeTab.Navigator>
+        <HomeTab.Navigator tabBar={props => <BottomBarNavigation {...props} />}>
           <HomeTab.Screen
             name={HomeRoutePath}
             options={{

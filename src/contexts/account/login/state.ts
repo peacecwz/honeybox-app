@@ -1,3 +1,5 @@
+import {Platform} from 'react-native';
+
 const notImplemented = () => {
   console.error('Method not implemented');
 };
@@ -5,8 +7,8 @@ const notImplemented = () => {
 export default class LoginState {
   email: string = '';
   password: string = '';
-  isEnabledAppleSignIn: boolean = false;
-  passwordVisible: boolean = true;
+  isEnabledAppleSignIn: boolean = Platform.OS === 'ios';
+  passwordVisible: boolean = false;
   actions: {
     register: Function;
     forgotPassword: Function;

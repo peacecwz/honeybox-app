@@ -14,38 +14,23 @@ import appleAuth, {
   AppleAuthRequestOperation,
 } from '@invertase/react-native-apple-authentication';
 import BaseContainer from '../base-container';
-import {Platform} from 'react-native';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import t from '../../utils/i18n';
 import database from '@react-native-firebase/database';
 
-export interface Props {
-  navigation: any;
-}
+export interface Props {}
 
 export default class LoginContainer extends BaseContainer<Props, LoginState> {
   constructor(props: any) {
     super(props);
-    this.forgotPassword = this.forgotPassword.bind(this);
-    this.register = this.register.bind(this);
-    this.signInWithApple = this.signInWithApple.bind(this);
-    this.signInWithAnonymously = this.signInWithAnonymously.bind(this);
-    this.signInWithGoogle = this.signInWithGoogle.bind(this);
-    this.signInWithEmail = this.signInWithEmail.bind(this);
-    this.state = {
-      passwordVisible: false,
-      isEnabledAppleSignIn: Platform.OS === 'ios',
-      email: '',
-      password: '',
-      actions: {
-        register: this.register,
-        forgotPassword: this.forgotPassword,
-        signInWithApple: this.signInWithApple,
-        signInWithAnonymously: this.signInWithAnonymously,
-        signInWithGoogle: this.signInWithGoogle,
-        signInWithEmail: this.signInWithEmail,
-      },
-    };
+    const state = new LoginState();
+    state.actions.forgotPassword = this.forgotPassword.bind(this);
+    state.actions.register = this.register.bind(this);
+    state.actions.signInWithApple = this.signInWithApple.bind(this);
+    state.actions.signInWithAnonymously = this.signInWithAnonymously.bind(this);
+    state.actions.signInWithGoogle = this.signInWithGoogle.bind(this);
+    state.actions.signInWithEmail = this.signInWithEmail.bind(this);
+    this.state = state;
   }
 
   componentDidMount() {
@@ -191,7 +176,7 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
   render() {
     return (
       <LoginContext.Provider value={this.state}>
-        <LoginScreen {...this.props} />
+        <LoginScreen />
       </LoginContext.Provider>
     );
   }

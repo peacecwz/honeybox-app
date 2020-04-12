@@ -4,6 +4,7 @@ const notImplemented = () => {
 
 export default class RegisterState {
   passwordVisible: boolean = false;
+  acceptPrivacy: boolean = false;
   fullName?: string;
   email: string = '';
   password: string = '';
