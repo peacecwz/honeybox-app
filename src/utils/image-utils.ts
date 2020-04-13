@@ -12,3 +12,16 @@ export function getImage(source: Source | string): Source {
 
   return source;
 }
+
+export function getImageForRN(source: Source | string): any {
+  if (typeof source === 'string') {
+    return <any>{
+      uri: source,
+      cache: 'force-cache',
+    };
+  } else if (typeof source === 'object') {
+    return source;
+  }
+
+  return source;
+}

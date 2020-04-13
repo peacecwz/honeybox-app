@@ -38,7 +38,7 @@ export default class ActivitiesScreen extends React.Component {
   renderEmptyDate() {
     return (
       <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
+        <Text>{t('This is empty date!')}</Text>
       </View>
     );
   }
@@ -57,26 +57,13 @@ export default class ActivitiesScreen extends React.Component {
           });
         }}>
         <View style={styles.content}>
-          <Input
-            status="control"
-            autoCapitalize="none"
-            placeholder={t('Full Name')}
-            icon={PersonIcon}
-          />
-          <Input
-            style={styles.formInput}
-            status="control"
-            autoCapitalize="none"
-            placeholder="Email"
-            icon={EmailIcon}
-          />
           <Button
             onPress={() => {
               this.setState({
                 showModal: false,
               });
             }}>
-            Close
+            {t('Close')}
           </Button>
         </View>
       </Modal>

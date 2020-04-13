@@ -49,7 +49,7 @@ export default class ChallengeDetailScreen extends React.Component {
                 </Text>
                 <View style={styles.authoringContainer}>
                   <Text appearance="hint" category="p2">
-                    {'By HoneyApp'}
+                    {t('By HoneyApp')}
                   </Text>
                   <Text
                     style={styles.dateLabel}

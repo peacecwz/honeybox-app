@@ -46,6 +46,10 @@ export const PersonIcon = (style: ImageStyle): IconElement => (
   <Icon {...style} name="person" />
 );
 
+export const CartIcon = (style: ImageStyle): IconElement => (
+  <Icon {...style} name="shopping-cart" />
+);
+
 export const TwitterIcon = (style: ImageStyle): IconElement => (
   <Icon {...style} name="twitter" />
 );
