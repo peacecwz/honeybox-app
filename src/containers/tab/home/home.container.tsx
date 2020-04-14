@@ -3,12 +3,14 @@ import BaseContainer from '../../base-container';
 import {AccountRoutePath} from '../../../routes/route.path';
 import HomeScreen from '../../../screens/tab/home/home.screen';
 import HomeContext from '../../../contexts/home/context';
-import HomeState, {Product, SliderItem} from '../../../contexts/home/state';
+import HomeState from '../../../contexts/home/state';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 import database from '@react-native-firebase/database';
-import {Challenge} from '../../../contexts/challenges/list/state';
 import {Linking} from 'react-native';
+import {Challenge} from "../../../models/challenge";
+import {Product} from "../../../models/product";
+import {SliderItem} from "../../../models/sliderItem";
 export interface Props {}
 
 export default class HomeContainer extends BaseContainer<Props, HomeState> {

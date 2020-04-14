@@ -1,10 +1,11 @@
 import * as React from 'react';
 import BaseContainer from '../../base-container';
-import ActivitiesState, {Activity} from '../../../contexts/activities/state';
+import ActivitiesState from '../../../contexts/activities/state';
 import ActivitiesContext from '../../../contexts/activities/context';
 import ActivitiesScreen from '../../../screens/tab/activities/activities.screen';
 import database from '@react-native-firebase/database';
 import {addDayToDate, getDates} from '../../../utils/date-utils';
+import {Activity} from "../../../models/activity";
 export interface Props {}
 export default class ActivitiesContainer extends BaseContainer<
   Props,

@@ -1,11 +1,12 @@
-export default class AppState {
+import BaseState from '../base-state';
+
+export default class AppState extends BaseState {
   isLogged: boolean;
-  isLoading: boolean;
   theme: string;
 
   constructor() {
+    super();
     this.isLogged = false;
-    this.isLoading = true;
     this.theme = 'light';
   }
 }

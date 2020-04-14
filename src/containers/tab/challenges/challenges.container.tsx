@@ -1,10 +1,11 @@
 import * as React from 'react';
-import ChallengesState, {Challenge} from '../../../contexts/challenges/list/state';
+import ChallengesState from '../../../contexts/challenges/list/state';
 import ChallengesContext from '../../../contexts/challenges/list/context';
 import ChallengesScreen from '../../../screens/tab/challenges/challenges.screen';
 import database from '@react-native-firebase/database';
 import BaseContainer from '../../base-container';
 import {AppRoutePath, ChallengeDetailRoutePath} from '../../../routes/route.path';
+import {Challenge} from "../../../models/challenge";
 
 export interface Props {}
 

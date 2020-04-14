@@ -1,8 +1,10 @@
+import BaseState from '../../base-state';
+
 const notImplemented = () => {
   console.error('Method not implemented');
 };
 
-export default class ForgotPasswordState {
+export default class ForgotPasswordState extends BaseState {
   email: string = '';
   actions: {
     forgotPassword: Function;

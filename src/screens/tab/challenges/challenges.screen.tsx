@@ -2,10 +2,10 @@ import React from 'react';
 import {ListRenderItemInfo, StyleSheet, View} from 'react-native';
 import {Card, Divider, List, Text, TopNavigation} from '@ui-kitten/components';
 import {ImageOverlay} from '../../../components/image-overlay';
-import {Challenge} from '../../../contexts/challenges/list/state';
 import ChallengesContext from '../../../contexts/challenges/list/context';
 import {getImage} from '../../../utils/image-utils';
 import t from '../../../utils/i18n';
+import {Challenge} from "../../../models/challenge";
 
 export default class ChallengesScreen extends React.Component {
   renderItem(

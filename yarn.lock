@@ -1057,6 +1057,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-6.4.0.tgz#0cdaaa15d2d8b8d85dc1a378e46dd5d8a005e38d"
   integrity sha512-ebtyXeL7oMZ416NingUxCfGbti6FQJwZ3UdCHFtBLeFebrfMY/BgVbtc0kq2Bhxq6WgPZ0vjwIv0k7+ZMsM7tw==
 
+"@react-native-firebase/messaging@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-6.4.0.tgz#712a7d2ea406f7f3d63fe2618f70f4f584b6d047"
+  integrity sha512-Ko+jAF7jgNZnGu697RE+o4RUB1Rqsqfk6+p+K2xuGFlorWLHFYrpqWuKyMZ13jieMp+NGg2C19PWzUJ0ozcdNg==
+
 "@react-native-firebase/storage@^6.3.4":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-6.4.0.tgz#6b1310fa17efa10c585eab92e8b84ff1a9f4780a"
@@ -5983,6 +5988,13 @@ react-native-image-picker@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.1.tgz#1977b65e07793d2c0b2d1976fb675c5f75ad7f11"
   integrity sha512-c/a2h7/T7yBo5KlNQhcSn4xf4+6Li6LfJ59+GZT1ZzzWrj/6X8DiJ/TJBOlOZMC5tJriZKuRkWSsr74k6z+brw==
+
+react-native-indicators@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/react-native-indicators/-/react-native-indicators-0.17.0.tgz#92f95efaf5fb53be576dfe4e1980a25655a93f55"
+  integrity sha512-s23em477GHGxWeGczWrixScAZD6tQU4mx1fttlrwhEGKOxhBgp55Kh3RoD9Wj4yna4e5W35xQNoPqoJAT6QW5A==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-iphone-x-helper@^1.0.3, react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"

@@ -67,6 +67,13 @@ export default class LoginScreen extends React.Component {
                 onPress={() => state.actions.signInWithEmail()}>
                 {t('SIGN IN')}
               </Button>
+              <Button
+                style={styles.signUpButton}
+                appearance="ghost"
+                status="control"
+                onPress={() => state.actions.signInWithAnonymously()}>
+                {t('Sign in anonymously')}
+              </Button>
               <View style={styles.socialAuthContainer}>
                 <Text style={styles.socialAuthHintText} status="control">
                   {t('Or Connect With')}

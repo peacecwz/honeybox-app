@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import ActivitiesContext from '../../../contexts/activities/context';
 import {Agenda} from 'react-native-calendars';
-import {ActivityDetail} from '../../../contexts/activities/state';
 import {
   Button,
   Divider,
@@ -19,6 +18,7 @@ import {
   PlusIcon,
 } from '../../../components/icons';
 import Modal from 'react-native-modal';
+import {ActivityDetail} from "../../../models/activityDetail";
 
 export default class ActivitiesScreen extends React.Component {
   state = {

@@ -17,6 +17,7 @@ import BaseContainer from '../base-container';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import t from '../../utils/i18n';
 import database from '@react-native-firebase/database';
+import messaging from '@react-native-firebase/messaging';
 
 export interface Props {}
 
@@ -33,7 +34,7 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
     this.state = state;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     GoogleSignin.configure({
       webClientId:
         '335438287916-rpb7ud3aqkvkkn3uqjnj3opmifjocea3.apps.googleusercontent.com',
@@ -41,6 +42,11 @@ export default class LoginContainer extends BaseContainer<Props, LoginState> {
       iosClientId:
         '335438287916-umn51r80orl981bvb9qbgsudd04c2igh.apps.googleusercontent.com',
     });
+    const settings = await messaging().requestPermission();
+
+    if (settings) {
+      await messaging().registerDeviceForRemoteMessages();
+    }
   }
 
   async signInWithGoogle() {

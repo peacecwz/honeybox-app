@@ -19,9 +19,10 @@ import {
 } from '@ui-kitten/components';
 import t from '../../../utils/i18n';
 import SliderCard from '../../../components/slider-card';
-import {Product, SliderItem} from '../../../contexts/home/state';
 import {CartIcon} from '../../../components/icons';
 import {getImageForRN} from '../../../utils/image-utils';
+import {Product} from "../../../models/product";
+import {SliderItem} from "../../../models/sliderItem";
 
 export default class HomeScreen extends React.Component {
   renderSliderItem(sliderItem: SliderItem, openPage: Function) {

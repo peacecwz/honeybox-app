@@ -1,10 +1,11 @@
 import {Platform} from 'react-native';
+import BaseState from '../../base-state';
 
 const notImplemented = () => {
   console.error('Method not implemented');
 };
 
-export default class LoginState {
+export default class LoginState extends BaseState {
   email: string = '';
   password: string = '';
   isEnabledAppleSignIn: boolean = Platform.OS === 'ios';

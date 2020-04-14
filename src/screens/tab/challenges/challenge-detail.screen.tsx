@@ -32,7 +32,7 @@ export default class ChallengeDetailScreen extends React.Component {
               title={state.challenge.title}
             />
             <Divider />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               <Layout style={styles.header} level="1">
                 <Text style={styles.titleLabel} category="h4">
                   {state.challenge.title}

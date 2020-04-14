@@ -3,7 +3,7 @@ import {Text, Card} from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 import {ImageOverlay} from './image-overlay';
 import {getImage} from '../utils/image-utils';
-import {SliderItem} from '../contexts/home/state';
+import {SliderItem} from "../models/sliderItem";
 
 export interface Props {
   sliderItem: SliderItem;

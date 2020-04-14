@@ -1,8 +1,10 @@
+import BaseState from '../base-state';
+
 const notImplemented = () => {
   console.error('Method not implemented');
 };
 
-export default class ProfileState {
+export default class ProfileState extends BaseState {
   isNotificationsEnabled: boolean = true;
   actions: {
     logOut: Function;
